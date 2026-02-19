@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question {{ current }} of {{ total }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; padding: 20px; background: #f5f7fa; color: #333; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .progress { color: #888; font-size: 14px; margin-bottom: 10px; }
+        .topic { display: inline-block; background: #eaf4fb; color: #2980b9; padding: 4px 12px; border-radius: 20px; font-size: 13px; margin-bottom: 15px; }
+        h2 { color: #2c3e50; margin-top: 10px; }
+        input[type="text"] { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; margin: 15px 0; box-sizing: border-box; }
+        input[type="text"]:focus { border-color: #2980b9; outline: none; }
+        button { background: #2980b9; color: white; padding: 12px 28px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #1f6fa3; }
+        .bar-wrap { background: #eee; border-radius: 10px; height: 8px; margin-bottom: 20px; }
+        .bar { background: #2980b9; height: 8px; border-radius: 10px; width: {{ (current / total * 100)|int }}%; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="progress">Question {{ current }} of {{ total }}</div>
+        <div class="bar-wrap"><div class="bar"></div></div>
+        <span class="topic">{{ question.topic }}</span>
+        <h2>{{ question.question }}</h2>
+        <form action="/answer" method="POST">
+            <input type="text" name="answer" placeholder="Type your answer here..." autofocus required>
+            <button type="submit">Submit Answer</button>
+        </form>
+    </div>
+</body>
+</html>

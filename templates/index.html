@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O-Level Physics Tutor</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; padding: 20px; background: #f5f7fa; color: #333; }
+        h1 { color: #2c3e50; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .weak { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .btn { display: inline-block; background: #2980b9; color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 18px; }
+        .btn:hover { background: #1f6fa3; }
+        .meta { color: #888; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>O-Level Physics Tutor</h1>
+        <p>Your personal exam coach — focused on the highest-frequency question types and scoring techniques.</p>
+
+        {% if progress.sessions > 0 %}
+            <p class="meta">Sessions completed: {{ progress.sessions }}</p>
+        {% endif %}
+
+        {% if progress.weak_topics %}
+            <div class="weak">
+                <strong>Focus areas from last session:</strong>
+                <ul>
+                {% for topic, count in progress.weak_topics.items() %}
+                    {% if count > 0 %}
+                        <li>{{ topic }} ({{ count }} missed)</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <a href="/start" class="btn">Start Session</a>
+    </div>
+</body>
+</html>

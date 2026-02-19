@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Complete</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; padding: 20px; background: #f5f7fa; color: #333; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .score { font-size: 48px; font-weight: bold; color: #2980b9; text-align: center; margin: 10px 0; }
+        .score-label { text-align: center; color: #888; margin-bottom: 20px; }
+        .message { text-align: center; font-size: 18px; margin-bottom: 25px; }
+        .review-item { border-left: 4px solid #e74c3c; padding: 15px; background: #fff5f5; border-radius: 5px; margin-bottom: 15px; }
+        .review-topic { font-weight: bold; color: #e74c3c; margin-bottom: 5px; }
+        .review-answer { color: #27ae60; font-weight: bold; margin: 8px 0; }
+        .explanation { color: #555; font-size: 14px; line-height: 1.6; }
+        .review-title { color: #e74c3c; margin-bottom: 15px; }
+        .btn { display: inline-block; background: #2980b9; color: white; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-size: 16px; }
+        .btn:hover { background: #1f6fa3; }
+        .encourage { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Session Complete</h1>
+        <div class="score">{{ score }}/{{ total }}</div>
+        <div class="score-label">questions correct</div>
+
+        {% if score == total %}
+            <div class="message">Outstanding! Perfect score!</div>
+        {% elif score >= total * 0.7 %}
+            <div class="message">Good work! Keep drilling the weak areas.</div>
+        {% else %}
+            <div class="message">Keep practising — consistency beats cramming every time.</div>
+        {% endif %}
+
+        <a href="/" class="btn">Start New Session</a>
+    </div>
+
+    {% if missed %}
+    <div class="card">
+        <h2 class="review-title">📖 Review Before Your Next Session</h2>
+        <div class="encourage">
+            Re-read these carefully. These topics will appear again next session until you've mastered them.
+            Mastery comes from repetition — keep practising!
+        </div>
+
+        {% for item in missed %}
+        <div class="review-item">
+            <div class="review-topic">{{ item.topic }}</div>
+            <p>{{ item.question }}</p>
+            <div class="review-answer">Correct answer: {{ item.answer }}</div>
+            <div class="explanation">{{ item.explanation }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

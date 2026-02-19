@@ -1,0 +1,9 @@
+{
+  "weak_topics": {
+    "Energy": 1,
+    "Pressure": 0,
+    "Kinematics": 1,
+    "Waves": 1
+  },
+  "sessions": 3
+}
